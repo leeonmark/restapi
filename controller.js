@@ -55,7 +55,7 @@ exports.ubahEthernet = function (req, res) {
     var current = req.body.current;
     var voltage = req.body.voltage;
 
-    connection.query('UPDATE ethernet SET nama=?, current=?, voltage=? WHERE ID=?', [nama, current, voltage,id],
+    connection.query('UPDATE ethernet SET nama=?, current=?, voltage=? WHERE ID=?', [nama, current, voltage, id],
         function (error, rows, fields) {
             if (error) {
                 console.log(error);
@@ -66,14 +66,14 @@ exports.ubahEthernet = function (req, res) {
 }
 
 //menghapus data berdasarkan id
-exports.hapusEthernet = function(req,res){
+exports.hapusEthernet = function (req, res) {
     var id = req.body.ID;
-    connection.query('DELETE FROM ethernet WHERE ID=?',[id],
-    function (error, rows, fields) {
-        if (error) {
-            console.log(error);
-        } else {
-            response.ok("Berhasil Hapus Data", res)
-        }
-    });
+    connection.query('DELETE FROM ethernet WHERE ID=?', [id],
+        function (error, rows, fields) {
+            if (error) {
+                console.log(error);
+            } else {
+                response.ok("Berhasil Hapus Data", res)
+            }
+        });
 }
