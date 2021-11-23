@@ -64,3 +64,16 @@ exports.ubahEthernet = function (req, res) {
             }
         });
 }
+
+//menghapus data berdasarkan id
+exports.hapusEthernet = function(req,res){
+    var id = req.body.ID;
+    connection.query('DELETE FROM ethernet WHERE ID=?',[id],
+    function (error, rows, fields) {
+        if (error) {
+            console.log(error);
+        } else {
+            response.ok("Berhasil Hapus Data", res)
+        }
+    });
+}

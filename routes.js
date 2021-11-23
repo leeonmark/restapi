@@ -16,4 +16,6 @@ module.exports = function (app) {
 
     app.route('/ubah')
         .put(jsonku.ubahEthernet);
+    app.route('/hapus')
+        .delete(jsonku.hapusEthernet);
 }
