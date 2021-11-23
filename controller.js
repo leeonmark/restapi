@@ -9,7 +9,7 @@ exports.index = function(req,res){
 
 //menampilkan semua data ethernet
 exports.tampilsemuaethernet = function(req,res){
-    connection.query('SELECT * FROM ethernet', function(error, rows, fileds){
+    connection.query('SELECT * FROM ethernet', function(error, rows, fields){
         if(error){
             console.log(error);
         }else {
@@ -29,4 +29,21 @@ exports.tampilkanberdasarkanid = function(req,res){
                 response.ok(rows, res);
             }
         });
+};
+
+//menambah data ethernet
+exports.tambahEthernet = function (req, res) {
+    var nama = req.body.nama;
+    var current = req.body.current;
+    var voltage = req.body.voltage;
+
+    connection.query('INSERT INTO ethernet (nama,current,voltage) VALUES(?,?,?)',
+    [nama,current,voltage],
+    function (error, rows, fields) {
+        if(error) {
+            console.log(error);
+        } else {
+            response.ok("Berhasil Menambahkan Data!", res)
+        }
+    });
 };
