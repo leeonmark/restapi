@@ -4,10 +4,6 @@ const app = express();
 
 app.use(express.json());
 
-const listener = app.listen(process.env.PORT || 5000, () => {
-    console.log('App is listening on port ' + listener.Address().port)
-});
-
 app.get("/",(req,res) => {
     res.send("tes lagi yaa")
 });
