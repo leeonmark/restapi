@@ -14,11 +14,6 @@ app.use(cors(corsOption));
 app.use(helmet());
 app.use(express.json());
 
-
-app.get('/', (req,res) => {
-    res.send('Welcome to Daily Code Buffer in Heroku Auto Deployment!!');
-});
-
 const listener = app.listen(process.env.PORT || 3000, () => {
     console.log('App is listening on port ' + listener.Address().port)
 });
