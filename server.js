@@ -14,13 +14,12 @@ app.use(cors(corsOption));
 app.use(helmet());
 app.use(express.json());
 
-
-const listener = app.listen(process.env.PORT || 3000, () => {
+const listener = app.listen(process.env.PORT || 5000, () => {
     console.log('App is listening on port ' + listener.Address().port)
 });
 
 app.get("/",(req,res) => {
-    res.send("what do u see??")
+    res.send("tes lagi yaa")
 });
 
 app.listen(process.env.PORT || port, () => {
