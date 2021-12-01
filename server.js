@@ -1,20 +1,10 @@
 const express = require('express');
-const cors = require("cors");
 const bodyParser = require('body-parser');
 const app = express();
-const helmet = require('helmet');
-const compression = require('compression');
 
-var corsOption = {
-    origin: "http://localhost:3000",
-};
-
-app.use(compression());
-app.use(cors(corsOption));
-app.use(helmet());
 app.use(express.json());
 
-const listener = app.listen(process.env.PORT || 5000, () => {
+const listener = app.listen(process.env.PORT || 3000, () => {
     console.log('App is listening on port ' + listener.Address().port)
 });
 
