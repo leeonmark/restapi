@@ -14,7 +14,8 @@ app.use(cors(corsOption));
 app.use(helmet());
 app.use(express.json());
 
-const listener = app.listen(process.env.PORT || 5000, () => {
+
+const listener = app.listen(process.env.PORT || 3000, () => {
     console.log('App is listening on port ' + listener.Address().port)
 });
 
