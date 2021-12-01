@@ -2,7 +2,17 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 
+app.use(express.json());
+
+
+app.get('/', (req,res) => {
+    res.send('Welcome to Daily Code Buffer in Heroku Auto Deployment!!');
+});
+
 const port = 5000
+
+const port = process.env.PORT || '5000';
+app.listen(port, () => console.log(`Server started on Port ${port}`));
 
 app.get("/",(req,res) => {
     res.send("tes lagi yaa")
