@@ -8,14 +8,4 @@ module.exports = function (app) {
 
     app.route('/tampil')
         .get(jsonku.tampilsemuaethernet);
-
-    app.route('/tampil/:id')
-        .get(jsonku.tampilkanberdasarkanid);
-    app.route('/tambah')
-        .post(jsonku.tambahethernet);
-
-    app.route('/ubah')
-        .put(jsonku.ubahethernet);
-    app.route('/hapus')
-        .delete(jsonku.hapusethernet);
 }
