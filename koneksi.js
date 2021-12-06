@@ -2,12 +2,11 @@ var mysql = require('mysql');
 
 //buat koneksi database
 const conn = mysql.createConnection({
-    server: "3306",
-    connection: "mysql",
     host:'localhost',
     user:'root',
     password:'',
-    database:'restapi'
+    database:'restapidb',
+    port: '3307'
 });
 
 conn.connect((err)=>{
