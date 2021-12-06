@@ -3,25 +3,24 @@
 var response = require('./res');
 var connection = require('./koneksi');
 
-exports.index = function (req, res) {
-    response.ok("Aplikasi REST API!", res)
+exports.index = function (req, res){
+    response.ok("REST API!!",res)
 };
 
-//menampilkan semua data mahasiswa
-exports.tampilsemuamahasiswa = function (req, res) {
-    connection.query('SELECT * FROM mahasiswa', function (error, rows, fileds) {
-        if (error) {
+//menampilkan semua data ethernet
+exports.tampilsemuaethernet = function(req, res) {
+    connection.query('SELECT * FROM ethernet', function(error, rows, fields){
+        if (error){
             console.log(error);
-        } else {
+        }else {
             response.ok(rows, res)
         }
     });
-};
 
-//menampilkan semua data mahasiwa berdasarkan id
-exports.tampilberdasarkanid = function (req, res) {
+    //menampilkan semua data ethernet berdasarkan id
+exports.tampilkanberdasarkanid = function (req, res) {
     let id = req.params.id;
-    connection.query('SELECT * FROM mahasiswa WHERE id_mahasiswa = ?', [id],
+    connection.query('SELECT * FROM ethernet WHERE ID = ?', [id],
         function (error, rows, fields) {
             if (error) {
                 console.log(error);
@@ -31,32 +30,31 @@ exports.tampilberdasarkanid = function (req, res) {
         });
 };
 
-//menambahkan data mahasiswa
-exports.tambahMahasiswa = function (req, res) {
-    var nim = req.body.nim;
+    //menambah data ethernet
+    exports.tambahEthernet = function (req, res) {
+        var nama = req.body.nama;
+        var current = req.body.current;
+        var voltage = req.body.voltage;
+    
+        connection.query('INSERT INTO ethernet (nama,current,voltage) VALUES(?,?,?)',
+            [nama, current, voltage],
+            function (error, rows, fields) {
+                if (error) {
+                    console.log(error);
+                } else {
+                    response.ok("Berhasil Menambahkan Data!", res)
+                }
+            });
+    };
+ 
+    //mengubah data berdasarkan id
+exports.ubahEthernet = function (req, res) {
+    var id = req.body.ID;
     var nama = req.body.nama;
-    var jurusan = req.body.jurusan;
+    var current = req.body.current;
+    var voltage = req.body.voltage;
 
-    connection.query('INSERT INTO mahasiswa (nim,nama,jurusan) VALUES(?,?,?)',
-        [nim, nama, jurusan],
-        function (error, rows, fields) {
-            if (error) {
-                console.log(error);
-            } else {
-                response.ok("Berhasil Menambahkan Data!", res)
-            }
-        });
-};
-
-
-//mengubah data berdasarkan id
-exports.ubahMahasiswa = function (req, res) {
-    var id = req.body.id_mahasiswa;
-    var nim = req.body.nim;
-    var nama = req.body.nama;
-    var jurusan = req.body.jurusan;
-
-    connection.query('UPDATE mahasiswa SET nim=?, nama=?, jurusan=? WHERE id_mahasiswa=?', [nim, nama, jurusan, id],
+    connection.query('UPDATE ethernet SET nama=?, current=?, voltage=? WHERE ID=?', [nama, current, voltage, id],
         function (error, rows, fields) {
             if (error) {
                 console.log(error);
@@ -64,32 +62,17 @@ exports.ubahMahasiswa = function (req, res) {
                 response.ok("Berhasil Ubah Data", res)
             }
         });
-}
+};
 
-//Menghapus data berdasarkan id
-exports.hapusMahasiswa = function (req, res) {
-    var id = req.body.id_mahasiswa;
-    connection.query('DELETE FROM mahasiswa WHERE id_mahasiswa=?',[id],
-        function (error, rows, fields) {
-            if (error) {
-                console.log(error);
-            } else {
-                response.ok("Berhasil Hapus Data", res)
-            }
-        });
-}
-
-//menampilkan matakuliah group
-exports.tampilgroupmatakuliah = function(req, res){
-    connection.query('SELECT mahasiswa.id_mahasiswa, mahasiswa.nim, mahasiswa.nama, mahasiswa.jurusan, matakuliah.matakuliah, matakuliah.sks from krs JOIN matakuliah JOIN mahasiswa WHERE krs.id_matakuliah = matakuliah.id_matakuliah AND krs.id_mahasiswa = mahasiswa.id_mahasiswa ORDER BY mahasiswa.id_mahasiswa',
-        function (error, rows, fields){
-            if(error){
-                console.log(error);
-            }else {
-                response.oknested(rows, res);
-            }
+//menghapus data berdasarkan id
+exports.hapusEthernet = function (req, res) {
+    var id = req.body.ID;
+    connection.query('DELETE FROM ethernet WHERE ID=?',[id], function (error, rows, fields) {
+        if (error) {
+            console.log(error);
+        } else {
+            response.ok("Berhasil Hapus Data",res)
         }
-    )
-
+    });
 }
-
+}
