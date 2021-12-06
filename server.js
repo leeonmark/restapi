@@ -5,7 +5,7 @@ const app = express();
 app.use(express.json());
 
 app.get("/",(req,res) => {
-    res.send("tes lagi yaa")
+    res.send("bismillah dulu")
 });
 
 //parser application/json
