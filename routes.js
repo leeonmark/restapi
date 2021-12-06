@@ -12,10 +12,10 @@ module.exports = function (app) {
     app.route('/tampil/:id')
         .get(jsonku.tampilkanberdasarkanid);
     app.route('/tambah')
-        .post(jsonku.tambahEthernet);
+        .post(jsonku.tambahethernet);
 
     app.route('/ubah')
-        .put(jsonku.ubahEthernet);
+        .put(jsonku.ubahethernet);
     app.route('/hapus')
-        .delete(jsonku.hapusEthernet);
+        .delete(jsonku.hapusethernet);
 }

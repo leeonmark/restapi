@@ -2,8 +2,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 
+app.use(express.json());
+
 app.get("/",(req,res) => {
-    res.send("bismillah dulu")
+    res.send("tes lagi yaa")
 });
 
 //parser application/json
@@ -16,4 +18,4 @@ routes(app);
 
 app.listen(3000, () => {
     console.log(`Server started on port`);
-}); 
+});
