@@ -1,11 +1,11 @@
-'use strict';
+var dbConn = require('../../config/db.config');
 
-var response = require('./res');
-var connection = require('./koneksi');
-
-exports.index = function (req, res) {
-    response.ok("REST API!!", res)
-};
+var Ethernet = function(ethernet){
+    this.nama       =   ethernet.nama;
+    this.current    =   ethernet.current;
+    this.voltage    =   ethernet.voltage;
+    this.time       =   new Date();
+}
 
 //menampilkan semua data ethernet
 exports.tampilsemuaethernet = function (req, res) {
@@ -16,6 +16,7 @@ exports.tampilsemuaethernet = function (req, res) {
             response.ok(rows, res)
         }
     });
+};
 
 //menampilkan semua data ethernet berdasarkan id
 exports.tampilkanberdasarkanid = function (req, res) {
@@ -62,18 +63,17 @@ exports.ubahEthernet = function (req, res) {
                 response.ok("Berhasil Ubah Data", res)
             }
         });
-};
+}
 
 //menghapus data berdasarkan id
-exports.hapusEthernet = function (req, res){
+exports.hapusEthernet = function (req, res) {
     var id = req.body.ID;
     connection.query('DELETE FROM ethernet WHERE ID=?', [id],
-    function (error, rows, fields) {
-        if (error) {
-            console.log(error);
-        } else {
-            response.ok("Berhasil Hapus Data", res)
-        }
-    });
-};
-};
+        function (error, rows, fields) {
+            if (error) {
+                console.log(error);
+            } else {
+                response.ok("Berhasil Hapus Data", res)
+            }
+        });
+}
