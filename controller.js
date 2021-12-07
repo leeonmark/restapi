@@ -16,6 +16,7 @@ exports.tampilsemuaethernet = function (req, res) {
             response.ok(rows, res)
         }
     });
+};
 
 //menampilkan semua data ethernet berdasarkan id
 exports.tampilkanberdasarkanid = function (req, res) {
@@ -75,5 +76,4 @@ exports.hapusEthernet = function (req, res){
             response.ok("Berhasil Hapus Data", res)
         }
     });
-};
 };
