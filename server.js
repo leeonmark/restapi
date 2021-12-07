@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const app = express();
 
 //parser application/json
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 //panggil routes
