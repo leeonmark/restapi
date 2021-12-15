@@ -3,11 +3,10 @@ var mysql = require('mysql');
 //buat koneksi database
 const conn = mysql.createConnection({
     port: '3306',
-    host:'dbkelompoka.gmedia.bz',
-    user:'gmedia_magangb',
-    password:'indo1945!merdeka',
-    database:'gmedia_magangb',
-    connection:'mysql',
+    host:'localhost',
+    user:'root',
+    password:'',
+    database:'restapi',
 });
 
 conn.connect((err)=>{
