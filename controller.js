@@ -7,9 +7,9 @@ exports.index = function (req, res) {
     response.ok("REST API!!", res)
 };
 
-//menampilkan semua data ethernet
-exports.tampilsemuaethernet = function (req, res) {
-    connection.query('SELECT * FROM ethernet', function (error, rows, fields) {
+//menampilkan semua data
+exports.tampilsemuadata = function (req, res) {
+    connection.query('SELECT * FROM data', function (error, rows, fileds) {
         if (error) {
             console.log(error);
         } else {
@@ -18,10 +18,10 @@ exports.tampilsemuaethernet = function (req, res) {
     });
 };
 
-//menampilkan semua data ethernet berdasarkan id
-exports.tampilkanberdasarkanid = function (req, res) {
+//menampilkan semua data berdasarkan id
+exports.tampildataberdasarkanid = function (req, res) {
     let id = req.params.id;
-    connection.query('SELECT * FROM ethernet WHERE ID = ?', [id],
+    connection.query('SELECT * FROM data WHERE id = ?', [id],
         function (error, rows, fields) {
             if (error) {
                 console.log(error);
@@ -31,14 +31,15 @@ exports.tampilkanberdasarkanid = function (req, res) {
         });
 };
 
-//menambah data ethernet
-exports.tambahEthernet = function (req, res) {
-    var nama = req.body.nama;
-    var current = req.body.current;
-    var voltage = req.body.voltage;
+//menambah data
+exports.tambahData = function (req, res) {
+    var currentac = req.body.currentac;
+    var voltageac = req.body.voltageac;
+    var currentdc = req.body.currentdc;
+    var voltagedc = req.body.voltagedc;
 
-    connection.query('INSERT INTO ethernet (nama,current,voltage) VALUES(?,?,?)',
-        [nama, current, voltage],
+    connection.query('INSERT INTO data (currentac,voltageac,currentdc,voltagedc) VALUES(?,?,?,?)',
+        [currentac, voltageac, currentdc, voltagedc],
         function (error, rows, fields) {
             if (error) {
                 console.log(error);
@@ -49,13 +50,14 @@ exports.tambahEthernet = function (req, res) {
 };
 
 //mengubah data berdasarkan id
-exports.ubahEthernet = function (req, res) {
-    var id = req.body.ID;
-    var nama = req.body.nama;
-    var current = req.body.current;
-    var voltage = req.body.voltage;
+exports.ubahData = function (req, res) {
+    var id = req.body.id;
+    var currentac = req.body.currentac;
+    var voltageac = req.body.voltageac;
+    var currentdc = req.body.currentdc;
+    var voltagedc = req.body.voltagedc;
 
-    connection.query('UPDATE ethernet SET nama=?, current=?, voltage=? WHERE ID=?', [nama, current, voltage, id],
+    connection.query('UPDATE data SET currentac=?, voltageac=?, currentdc=?, voltagedc=? WHERE id=?', [currentac, voltageac, currentdc, voltagedc, id],
         function (error, rows, fields) {
             if (error) {
                 console.log(error);
@@ -66,14 +68,14 @@ exports.ubahEthernet = function (req, res) {
 };
 
 //menghapus data berdasarkan id
-exports.hapusEthernet = function (req, res){
+exports.hapusData = function (req, res) {
     var id = req.body.ID;
-    connection.query('DELETE FROM ethernet WHERE ID=?', [id],
-    function (error, rows, fields) {
-        if (error) {
-            console.log(error);
-        } else {
-            response.ok("Berhasil Hapus Data", res)
-        }
-    });
+    connection.query('DELETE FROM data WHERE id=?', [id],
+        function (error, rows, fields) {
+            if (error) {
+                console.log(error);
+            } else {
+                response.ok("Berhasil Hapus Data", res)
+            }
+        });
 };
