@@ -7,15 +7,17 @@ module.exports = function (app) {
         .get(jsonku.index);
 
     app.route('/tampil')
-        .get(jsonku.tampilsemuadata);
+        .get(jsonku.tampilsemuaEthernet);
 
     app.route('/tampil/:id')
-        .get(jsonku.tampildataberdasarkanid);
+        .get(jsonku.tampilethernetberdasarkanid);
+
     app.route('/tambah')
-        .post(jsonku.tambahData);
+        .post(jsonku.tambahEthernet);
 
     app.route('/ubah')
-        .put(jsonku.ubahData);
+        .put(jsonku.ubahEthernet);
+
     app.route('/hapus')
-        .delete(jsonku.hapusData);
+        .delete(jsonku.hapusEthernet);
 };
